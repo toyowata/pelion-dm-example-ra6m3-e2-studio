@@ -63,11 +63,13 @@ Click [Resume] button to run the program
 https://portal.mbedcloud.com/
 * Select your device from Device directory  
 https://portal.mbedcloud.com/devices/list  
-![](./pict/devices.png)
+![](./pict/devices.png)  
+  
 * Click `RESOURCES` tab
-![](./pict/resources.png)
+![](./pict/resources.png)  
+  
 * Click `/3200/0/5501` resource (button_resource)
-![](./pict/graph.png)
+![](./pict/graph.png)  
 
 
 ## See also
