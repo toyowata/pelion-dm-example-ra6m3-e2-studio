@@ -1,19 +1,19 @@
 # pelion-dm-example-ra6m3-e2-studio
-Pelion Device Management example for Renesas EK-RA6M3 e2 studio project
+Pelion Device Management example for Renesas EK-RA6M3 e<sup>2</sup> studio project
 
 ## Setup
 ### Install software
-* Download the FSP with e2 studio Installer
+* Download the FSP with e<sup>2</sup> studio Installer  
 https://github.com/renesas/fsp/releases/download/v1.2.0/setup_fsp_v1_2_0_e2s_v2020-04.exe
-* Download SEGGER J-Link software
+* Download SEGGER J-Link software  
 https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack
 
 ### Create Pelion Device Management account and developer certificate
 
-* Signing up or logging in to Device Management Portal
+* Signing up or logging in to Device Management Portal  
 https://www.pelion.com/docs/device-management/current/user-account/index.html
 
-* Creating and downloading a developer certificate
+* Creating and downloading a developer certificate (`mbed_cloud_dev_credentials.c`)  
 https://www.pelion.com/docs/device-management/current/provisioning-process/provisioning-development-devices.html
 
 ## How to import/build the example project
@@ -26,9 +26,9 @@ Click [Next >] button
 Click [Finish] button
 
 ### Build the project
-* Open configurations.xml in the project
+* Open `configurations.xml` in the project
 Click [Generate Project Content] to generate code
-* Copy your PDMC credential file {project}\pdmc\mbed_cloud_dev_credentials.c
+* Copy your Pelion developer cirtificate file {project}\pdmc\mbed_cloud_dev_credentials.c
 * Click Build button to compile/link the project
 
 ### Setup EK-RA6M3 hardware
@@ -43,7 +43,7 @@ Click [Generate Project Content] to generate code
   * RTT Control Block - Auto Detection
 * Click [OK] button to connect the target
 
-* Back to e2 studio IDE
+* Back to e<sup>2</sup> studio IDE
 * Click [Debug As...] button
 * Select [Renesas GDB Hardware Debugging]
 Click [OK] button 
@@ -59,9 +59,21 @@ Click [Resume] button to run the program
 
 ### Browse your device resource from portal
 
-* Open Pelion Device Management portal page
+* Open Pelion Device Management portal page  
 https://portal.mbedcloud.com/
-* Select your device from Device directory
-https://portal.mbedcloud.com/devices/list
+* Select your device from Device directory  
+https://portal.mbedcloud.com/devices/list  
+![](./pict/devices.png)
 * Click `RESOURCES` tab
+![](./pict/resources.png)
 * Click `/3200/0/5501` resource (button_resource)
+![](./pict/graph.png)
+
+
+## See also
+
+Pelion Device Management document  
+https://www.pelion.com/docs/device-management/current/welcome/index.html
+
+Command-line tutorial for Renesas SDK with Pelion Device Management  
+https://www.pelion.com/docs/device-management/current/connecting/renesas-sdk.html
