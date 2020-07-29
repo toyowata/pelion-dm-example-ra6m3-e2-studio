@@ -28,7 +28,7 @@ Click [Finish] button
 ### Build the project
 * Open `configurations.xml` in the project
 Click [Generate Project Content] to generate code
-* Copy your Pelion developer cirtificate file {project}\pdmc\mbed_cloud_dev_credentials.c
+* Copy your Pelion developer cirtificate file `${ProjName}/pdmc/mbed_cloud_dev_credentials.c` (overwrite existing file)
 * Click Build button to compile/link the project
 
 ### Setup EK-RA6M3 hardware
