@@ -29,7 +29,7 @@ https://www.pelion.com/docs/device-management/current/user-account/index.html
 
 * Creating and downloading a developer certificate (`mbed_cloud_dev_credentials.c`)  
 https://www.pelion.com/docs/device-management/current/provisioning-process/provisioning-development-devices.html
-* Create API key  
+* Create API key with `Administrators` group privileges  
 https://www.pelion.com/docs/device-management/current/user-account/api-keys.html#creating-a-key
 
 
@@ -92,7 +92,7 @@ The Release target of this example support firmware update feature with Renesas 
   * Use following commands to create update certificate
 ```
 $ cd pdmc
-$ manifest-dev-tool init -a <API key> -f
+$ manifest-tool init -a <API key> -d arm.com -m example-app --force -q
 $ exit
 ```
 * Open project properties - [C/C++ Build] - [Environment]
@@ -106,9 +106,9 @@ $ exit
 * Connect the EK-RA6M3 target board
 * Erase the chip
 * Flash secure bootloader at address 0  
-`{SBOOT_PATH}\scripts\downloader\BL2_download\Secureboot_EK_RA6M3.bin`
+`{your-SecureBoot_Package-path}\scripts\downloader\BL2_download\Secureboot_EK_RA6M3.bin`
 * Flash the firmware at address 0x00010000  
-`${ProjName}/pdmc/Release/Release/Pelion_DM_example_signed.bin`
+`{your-workspace-path}\Pelion_DM_example\pdmc\Release\Release\Pelion_DM_example_signed.bin`
 * Close the JFlash Lite application
 * Launch J-Link RTT Viewer application and connect the target
 
@@ -116,7 +116,7 @@ Your device is now connected and ready for firmware update. For development devi
 
 ### Updating the firmware
 
-* Build your program with Release target
+* Build your program for the Release target
 * Right click the project and navigate to `Command Prompt`
 ```
 $ cd pdmc
