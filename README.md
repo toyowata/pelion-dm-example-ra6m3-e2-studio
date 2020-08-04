@@ -102,14 +102,17 @@ $ exit
 
 ### Flash secure bootloader and firmware
 
-* Open SEGGER JFlash Lite application
+* Open SEGGER J-Flash Lite application
 * Connect the EK-RA6M3 target board
 * Erase the chip
 * Flash secure bootloader at address 0  
-`{your-SecureBoot_Package-path}\scripts\downloader\BL2_download\Secureboot_EK_RA6M3.bin`
-* Flash the firmware at address 0x00010000  
-`{your-workspace-path}\Pelion_DM_example\pdmc\Release\Release\Pelion_DM_example_signed.bin`
-* Close the JFlash Lite application
+`{your-SecureBoot_Package-path}\scripts\downloader\BL2_download\Secureboot_EK_RA6M3.bin`  
+![](./pict/bootloader.png)  
+
+* Flash the signed firmware at address 0x00010000  
+`{your-workspace-path}\Pelion_DM_example\pdmc\Release\Release\Pelion_DM_example_signed.bin`  
+![](./pict/firmware.png)  
+* Close the J-Flash Lite application
 * Launch J-Link RTT Viewer application and connect the target
 
 Your device is now connected and ready for firmware update. For development devices, the Endpoint name and Device ID are identical.
