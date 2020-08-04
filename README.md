@@ -3,10 +3,24 @@ Pelion Device Management example for Renesas EK-RA6M3 e<sup>2</sup> studio proje
 
 ## Setup
 ### Install software
-* Download the FSP with e<sup>2</sup> studio Installer  
+* Renesas FSP with e<sup>2</sup> studio Installer  
 https://github.com/renesas/fsp/releases/download/v1.2.0/setup_fsp_v1_2_0_e2s_v2020-04.exe
-* Download SEGGER J-Link software  
+* SEGGER J-Link software  
 https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack
+* python 3.x  
+https://www.python.org/downloads/
+* Git SCM  
+https://git-scm.com/downloads
+* manifest-tool v1.5.2
+  Open command prompt
+```
+$ git clone -b v1.5.2 https://github.com/ARMmbed/manifest-tool
+$ pip install .\manifest-tool
+```
+* Install other python modules
+```
+$ pip install -U cryptography==2.9.2 pyasn1==0.4.8 cbor mbed-cloud-sdk
+```
 
 ### Create Pelion Device Management account and developer certificate
 
@@ -15,11 +29,14 @@ https://www.pelion.com/docs/device-management/current/user-account/index.html
 
 * Creating and downloading a developer certificate (`mbed_cloud_dev_credentials.c`)  
 https://www.pelion.com/docs/device-management/current/provisioning-process/provisioning-development-devices.html
+* Create API key  
+https://www.pelion.com/docs/device-management/current/user-account/api-keys.html#creating-a-key
 
-## How to import/build the example project
+
+## How to import/build the example project (for Debug target)
 
 ### Import the example project
-* Launch e2 studio
+* Launch e<sup>2</sup> studio
 [File] - [Import] - [General] - [Existing Projects into Workspace]
 Click [Next >] button 
 * [Select this archive file] and browse the zip file
@@ -44,15 +61,7 @@ Click [Generate Project Content] to generate code
 * Click [OK] button to connect the target
 
 * Back to e<sup>2</sup> studio IDE
-* Click [Debug As...] button
-* Select [Renesas GDB Hardware Debugging]
-Click [OK] button 
-* Choose the [Pelion_DM_example.elf] binary
-Click [OK] button 
-* Select [J-Link ARM] for debug hardware
-Click [OK] button 
-* Select [R7FA6M3AH] device
-Click [OK] button 
+* Click `Debug Pelion_DM_example.elf` button
 * The Pelion_DM_example.elf binary is flashed to the target board 
 * Confirm Perspective Switch - click [Yes] button 
 Click [Resume] button to run the program 
@@ -70,6 +79,62 @@ https://portal.mbedcloud.com/devices/list
   
 * Click `/3200/0/5501` resource (button_resource)
 ![](./pict/graph.png)  
+
+## How to make firmware update (for Release target)
+
+The Release target of this example support firmware update feature with Renesas secure bootloader.
+
+### Build the firmware
+
+* Change active target to `Release`
+* Initialize the firmware-update-specific resources
+  * Right click the project and navigate to `Command Prompt`
+  * Use following commands to create update certificate
+```
+$ cd pdmc
+$ manifest-dev-tool init -a <API key> -f
+$ exit
+```
+* Open project properties - [C/C++ Build] - [Environment]
+* Set `SBOOT_PATH` to secure boot package path, [Apply and Close] button  
+![](./pict/sboot.png)  
+* Build the project
+
+### Flash secure bootloader and firmware
+
+* Open SEGGER JFlash Lite application
+* Connect the EK-RA6M3 target board
+* Erase the chip
+* Flash secure bootloader at address 0  
+`{SBOOT_PATH}\scripts\downloader\BL2_download\Secureboot_EK_RA6M3.bin`
+* Flash the firmware at address 0x00010000  
+`${ProjName}/pdmc/Release/Release/Pelion_DM_example_signed.bin`
+* Close the JFlash Lite application
+* Launch J-Link RTT Viewer application and connect the target
+
+Your device is now connected and ready for firmware update. For development devices, the Endpoint name and Device ID are identical.
+
+### Updating the firmware
+
+* Build your program with Release target
+* Right click the project and navigate to `Command Prompt`
+```
+$ cd pdmc
+$ manifest-tool update device -p ..\Release\Pelion_DM_example_signed.bin -D <Device ID> -a <API Key>
+```
+
+When the update starts, the client tracing log shows:
+```
+Firmware download requested
+Authorization granted
+...
+Downloading: 100 %
+Download completed
+Firmware install requested
+Authorization granted
+```
+
+After this, the device reboots automatically and registers to Device Management.
 
 
 ## See also
