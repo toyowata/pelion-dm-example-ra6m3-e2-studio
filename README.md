@@ -19,7 +19,7 @@ $ pip install .\manifest-tool
 ```
 * Install other python modules
 ```
-$ pip install -U cryptography==2.9.2 pyasn1==0.4.8 cbor mbed-cloud-sdk
+$ pip install -U cbor mbed-cloud-sdk
 ```
 
 ### Create Pelion Device Management account and developer certificate
