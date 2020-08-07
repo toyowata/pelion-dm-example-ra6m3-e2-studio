@@ -11,11 +11,14 @@ https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack
 https://www.python.org/downloads/
 * Git SCM  
 https://git-scm.com/downloads
+* Renesas Secure Boot Package in Application Note r01an5347eu0110-ra-arm-secure-boot-solution-ra6m3.zip - download and unzip all files  
+https://www.renesas.com/us/en/software/D6004344.html
 * manifest-tool v1.5.2
   Open command prompt
 ```
 $ git clone -b v1.5.2 https://github.com/ARMmbed/manifest-tool
-$ pip install .\manifest-tool
+$ cd manifest-tool
+$ pip install .
 ```
 * Install other python modules
 ```
@@ -96,7 +99,7 @@ $ manifest-tool init -a <API key> -d arm.com -m example-app --force -q
 $ exit
 ```
 * Open project properties - [C/C++ Build] - [Environment]
-* Set `SBOOT_PATH` to secure boot package path, [Apply and Close] button  
+* Set `SBOOT_PATH` to secure boot package path in the [application note](https://www.renesas.com/us/en/software/D6004344.html), [Apply and Close] button  
 ![](./pict/sboot.png)  
 * Build the project
 
