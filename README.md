@@ -113,12 +113,15 @@ $ exit
 ![](./pict/bootloader.png)  
 
 * Flash the signed firmware at address 0x00010000  
-`{your-workspace-path}\Pelion_DM_example\pdmc\Release\Release\Pelion_DM_example_signed.bin`  
+`{your-workspace-path}\Pelion_DM_example\Release\Pelion_DM_example_signed.bin`  
 ![](./pict/firmware.png)  
 * Close the J-Flash Lite application
 * Launch J-Link RTT Viewer application and connect the target
 
-Your device is now connected and ready for firmware update. For development devices, the Endpoint name and Device ID are identical.
+Your device is now connected and ready for firmware update. For development devices, the Endpoint name and Device ID are identical.  
+
+![](./pict/device_id.png)  
+
 
 ### Updating the firmware
 
